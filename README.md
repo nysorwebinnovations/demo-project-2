@@ -2,7 +2,7 @@
 
 An interactive, localized Admin Dashboard designed for supermarket inventory management, sales tracking, and order fulfillment in Sri Lanka.
 
-[![Live Demo](https://img.shields.io/badge/Live_Demo-View_Dashboard-f59e0b?style=for-the-badge)](https://your-cms-demo.vercel.app)
+[![Live Demo](https://img.shields.io/badge/Live_Demo-View_Dashboard-f59e0b?style=for-the-badge)](https://demo-project-2-nysor.vercel.app/)
 
 ---
 
