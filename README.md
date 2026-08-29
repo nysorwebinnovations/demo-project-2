@@ -22,4 +22,4 @@ CeylonCart Studio Admin provides store managers with real-time operational overs
 - **Deployment:** Vercel / Netlify
 
 ---
-© 2026 Sihan Ranawaka. All rights reserved.
+© 2026 NYSOR Web Innovations. All rights reserved.
