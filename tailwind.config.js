@@ -1,0 +1,111 @@
+/** @type {import('tailwindcss').Config} */
+export default {
+  content: ['./index.html', './src/**/*.{js,ts,jsx,tsx}'],
+  darkMode: 'class',
+  theme: {
+    extend: {
+      colors: {
+        // Primary: Saffron Gold #FBB917
+        brand: {
+          50:  '#fffbeb',
+          100: '#fef3c7',
+          200: '#fde68a',
+          300: '#fcd34d',
+          400: '#fbbf24',
+          500: '#FBB917',
+          600: '#e6a800',
+          700: '#cc9500',
+          800: '#a37800',
+          900: '#7a5c00',
+          950: '#4a3700',
+        },
+        // Secondary: Burlywood / Earth #DEB887
+        earth: {
+          50:  '#fdf8f2',
+          100: '#f8edde',
+          200: '#f0d9bb',
+          300: '#e6c491',
+          400: '#DEB887',
+          500: '#d4a06a',
+          600: '#c08850',
+          700: '#a06f3d',
+          800: '#7d5530',
+          900: '#5e3f24',
+          950: '#3a2714',
+        },
+        success: {
+          50:  '#edfcf2',
+          100: '#d3f8df',
+          200: '#aaefc2',
+          300: '#72e09b',
+          400: '#3ec96f',
+          500: '#1bb354',
+          600: '#109043',
+          700: '#0d7238',
+          800: '#0f5b30',
+          900: '#0e4b29',
+          950: '#052e17',
+        },
+        warning: {
+          50:  '#fff8eb',
+          100: '#feefc6',
+          200: '#fdd988',
+          300: '#fcbd49',
+          400: '#fba31f',
+          500: '#f5810b',
+          600: '#d85f06',
+          700: '#b43f08',
+          800: '#92310e',
+          900: '#78290f',
+          950: '#431507',
+        },
+        error: {
+          50:  '#fef2f2',
+          100: '#fde3e3',
+          200: '#fbcccc',
+          300: '#f7a8a8',
+          400: '#f27676',
+          500: '#e64a4a',
+          600: '#d31f1f',
+          700: '#b01515',
+          800: '#921515',
+          900: '#7a1717',
+          950: '#450a0a',
+        },
+      },
+      fontFamily: {
+        sans: ['Outfit', 'Inter', 'ui-sans-serif', 'system-ui', 'sans-serif'],
+      },
+      boxShadow: {
+        card:       '0 1px 2px 0 rgb(0 0 0 / 0.04), 0 1px 3px 0 rgb(0 0 0 / 0.06)',
+        'card-hover':'0 4px 12px -2px rgb(0 0 0 / 0.08), 0 2px 6px -2px rgb(0 0 0 / 0.06)',
+        'gold':     '0 2px 12px 0 rgb(251 185 23 / 0.30)',
+      },
+      keyframes: {
+        'fade-in': {
+          '0%':   { opacity: '0', transform: 'translateY(6px)' },
+          '100%': { opacity: '1', transform: 'translateY(0)' },
+        },
+        'scale-in': {
+          '0%':   { opacity: '0', transform: 'scale(0.96)' },
+          '100%': { opacity: '1', transform: 'scale(1)' },
+        },
+        'slide-in': {
+          '0%':   { opacity: '0', transform: 'translateX(-8px)' },
+          '100%': { opacity: '1', transform: 'translateX(0)' },
+        },
+        'pulse-gold': {
+          '0%, 100%': { boxShadow: '0 0 0 0 rgb(251 185 23 / 0.4)' },
+          '50%':      { boxShadow: '0 0 0 6px rgb(251 185 23 / 0)' },
+        },
+      },
+      animation: {
+        'fade-in':    'fade-in 0.22s ease-out',
+        'scale-in':   'scale-in 0.15s ease-out',
+        'slide-in':   'slide-in 0.2s ease-out',
+        'pulse-gold': 'pulse-gold 2s ease-in-out infinite',
+      },
+    },
+  },
+  plugins: [],
+};
