@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { ThemeProvider } from '@/context/ThemeContext';
 import { Sidebar } from '@/components/layout/Sidebar';
 import { TopHeader } from '@/components/layout/TopHeader';
@@ -22,7 +22,38 @@ const viewMeta: Record<ViewKey, { title: string; subtitle: string }> = {
 function App() {
   const [view, setView]           = useState<ViewKey>('overview');
   const [collapsed, setCollapsed] = useState(false);
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const meta = viewMeta[view];
+
+  const handleNavigate = (key: ViewKey) => {
+    setView(key);
+    setMobileMenuOpen(false);
+  };
+
+  useEffect(() => {
+    if (mobileMenuOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = '';
+    }
+    return () => {
+      document.body.style.overflow = '';
+    };
+  }, [mobileMenuOpen]);
+
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') {
+        setMobileMenuOpen(false);
+      }
+    };
+    if (mobileMenuOpen) {
+      window.addEventListener('keydown', handleKeyDown);
+    }
+    return () => {
+      window.removeEventListener('keydown', handleKeyDown);
+    };
+  }, [mobileMenuOpen]);
 
   return (
     <ThemeProvider>
@@ -37,10 +68,29 @@ function App() {
           />
         </div>
 
+        {/* Mobile sidebar drawer */}
+        {mobileMenuOpen && (
+          <div className="fixed inset-0 z-50 lg:hidden">
+            <div
+              className="absolute inset-0 bg-slate-900/60 backdrop-blur-sm animate-fade-in"
+              onClick={() => setMobileMenuOpen(false)}
+            />
+            <div className="relative h-full w-64 animate-drawer-in">
+              <Sidebar
+                active={view}
+                onNavigate={handleNavigate}
+                collapsed={false}
+                onToggleCollapse={() => setMobileMenuOpen(false)}
+                isMobile={true}
+              />
+            </div>
+          </div>
+        )}
+
         {/* Main content */}
         <div className="flex flex-1 flex-col overflow-hidden">
           <TopHeader
-            onToggleSidebar={() => setCollapsed((c) => !c)}
+            onToggleSidebar={() => setMobileMenuOpen((o) => !o)}
             title={meta.title}
             subtitle={meta.subtitle}
           />

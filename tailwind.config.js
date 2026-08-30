@@ -94,6 +94,10 @@ export default {
           '0%':   { opacity: '0', transform: 'translateX(-8px)' },
           '100%': { opacity: '1', transform: 'translateX(0)' },
         },
+        'drawer-in': {
+          '0%':   { transform: 'translateX(-100%)' },
+          '100%': { transform: 'translateX(0)' },
+        },
         'pulse-gold': {
           '0%, 100%': { boxShadow: '0 0 0 0 rgb(251 185 23 / 0.4)' },
           '50%':      { boxShadow: '0 0 0 6px rgb(251 185 23 / 0)' },
@@ -103,6 +107,7 @@ export default {
         'fade-in':    'fade-in 0.22s ease-out',
         'scale-in':   'scale-in 0.15s ease-out',
         'slide-in':   'slide-in 0.2s ease-out',
+        'drawer-in':  'drawer-in 0.28s cubic-bezier(0.16, 1, 0.3, 1)',
         'pulse-gold': 'pulse-gold 2s ease-in-out infinite',
       },
     },

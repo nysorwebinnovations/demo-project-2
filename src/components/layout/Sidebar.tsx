@@ -7,6 +7,7 @@ import {
   Settings,
   ChevronLeft,
   ShoppingBasket,
+  X,
 } from 'lucide-react';
 import type { ViewKey } from '@/types';
 import { navItems } from '@/data/mockData';
@@ -26,14 +27,15 @@ interface SidebarProps {
   onNavigate: (view: ViewKey) => void;
   collapsed: boolean;
   onToggleCollapse: () => void;
+  isMobile?: boolean;
 }
 
-export function Sidebar({ active, onNavigate, collapsed, onToggleCollapse }: SidebarProps) {
+export function Sidebar({ active, onNavigate, collapsed, onToggleCollapse, isMobile = false }: SidebarProps) {
   return (
     <aside
       className={`flex h-screen flex-col border-r border-slate-200 bg-white transition-[width] duration-300 dark:border-slate-800 dark:bg-slate-900 ${
         collapsed ? 'w-[72px]' : 'w-64'
-      }`}
+      } ${isMobile ? 'fixed left-0 top-0 z-50' : ''}`}
     >
       {/* Brand Logo */}
       <div className="flex h-16 items-center gap-3 border-b border-slate-200 px-4 dark:border-slate-800">
@@ -88,16 +90,22 @@ export function Sidebar({ active, onNavigate, collapsed, onToggleCollapse }: Sid
         })}
       </nav>
 
-      {/* Collapse Toggle */}
+      {/* Collapse / Close Toggle */}
       <div className="border-t border-slate-200 p-3 dark:border-slate-800">
         <button
           onClick={onToggleCollapse}
           className={`flex w-full items-center gap-3 rounded-xl px-3 py-2.5 text-sm font-medium text-slate-500 transition hover:bg-slate-100 hover:text-slate-700 dark:text-slate-400 dark:hover:bg-slate-800 dark:hover:text-slate-200 ${
-            collapsed ? 'justify-center' : ''
+            collapsed || isMobile ? 'justify-center' : ''
           }`}
+          aria-label={isMobile ? 'Close menu' : 'Toggle sidebar'}
         >
-          <ChevronLeft className={`h-5 w-5 transition-transform duration-300 ${collapsed ? 'rotate-180' : ''}`} />
-          {!collapsed && <span className="animate-slide-in">Collapse</span>}
+          {isMobile ? (
+            <X className="h-5 w-5" />
+          ) : (
+            <ChevronLeft className={`h-5 w-5 transition-transform duration-300 ${collapsed ? 'rotate-180' : ''}`} />
+          )}
+          {!collapsed && !isMobile && <span className="animate-slide-in">Collapse</span>}
+          {isMobile && <span className="animate-slide-in">Close Menu</span>}
         </button>
       </div>
     </aside>
